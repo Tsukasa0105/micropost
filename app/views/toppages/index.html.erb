@@ -12,6 +12,30 @@
       <%= render 'microposts/microposts', microposts: @microposts %>
     </div>
   </div>
+  <br><br><br>
+  <div>
+    <%= form_with(url: root_path, method: :get, local: true) do |s| %>
+      <%= s.text_field :search %>
+      <%= s.submit 'Search', class: 'btn btn-primary btn-block' %>
+    <% end %>
+  </div>
+  <div>
+    <% if @rests %>
+      <% @rests.each do |rest| %>
+          <div class = col-lg-6>
+            <%= image_tag(rest["image_url"]["shop_image1"]) %>
+          </div>
+          <div class = col-lg-6>
+              <p><%= "名前: #{rest["name"]}" %></p> 
+              <p><%= "カテゴリー: #{rest["category"]}" %></p> 
+              <p><%= "住所: #{rest["address"]}" %></p>           
+          </div>
+      <% end %>
+    <% else %>
+      <p>なし</p>
+      
+    <% end %>
+  </div>
 <% else %>
   <div class="center jumbotron">
     <div class="text-center">
